@@ -20,11 +20,6 @@
 
 <div align="right"> <img src=https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-icon-png-image_6315990.png width="20" height="20"> +91 98712 72900 </div>
 
-#
-</br>
-
-## $`\textcolor{red}{\text{NOTE: USE UBUNTU 22.04 VIRTUAL MACHINES FOR ALL THE LABS}}`$
-
 ## _Setup GCP Free Tier Account_
 
 In this article, we are just going to tell you **how to create a free trial Google Cloud Platform (GCP) account**.
