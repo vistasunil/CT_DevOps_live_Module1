@@ -5,7 +5,7 @@
 
 # <div align="center"> LINUX BASIC COMMANDS </p>
 
-# <div align="center"> DevOps Instrutor-led Training </div>
+# <div align="center"> DevOps Instructor-led Training </div>
 
 # <div align="right"> $`\textcolor{brown}{\text{Contact us: }}`$  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; </div>
 
