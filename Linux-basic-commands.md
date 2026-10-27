@@ -23,6 +23,17 @@
 
 #
 
+> **Note (Ubuntu 26.04 LTS):** Some of the tools below are not part of the default
+> Ubuntu Server image and must be installed first:
+>
+> ```
+> sudo apt update
+> sudo apt install -y htop sysstat tcpdump pciutils usbutils dmidecode hdparm net-tools bind9-dnsutils whois lsof
+> ```
+>
+> `sysstat` provides `mpstat`/`iostat`, `pciutils` provides `lspci`, `usbutils` provides
+> `lsusb` and `bind9-dnsutils` provides `dig`/`host`.
+
 # 1 – SYSTEM INFORMATION
 
 ### Display Linux system information
@@ -132,9 +143,23 @@
 
 `iostat 1`
 
-### Display the last 100 syslog messages  (Use /var/log/syslog for Debian based systems.)
+### Display the last 100 system log messages
 
-`tail -100 /var/log/messages`
+Ubuntu 26.04 uses the systemd journal by default (`rsyslog` and `/var/log/syslog` are no longer installed):
+
+`journalctl -n 100`
+
+### Follow the system log live
+
+`journalctl -f`
+
+### Show the log of a single service
+
+`journalctl -u ssh -n 100`
+
+### Show only messages from the current boot
+
+`journalctl -b`
 
 ### Capture and display all packets on interface eth0
 
@@ -384,7 +409,17 @@ Linux chmod example
 
 ### Display listening tcp and udp ports and corresponding programs
 
-`netstat -nutlp`
+`ss -nutlp`
+
+_(`ss` replaces the legacy `netstat`, which ships in the optional `net-tools` package.)_
+
+### Show the routing table
+
+`ip route show`
+
+### Show network interfaces and addresses
+
+`ip addr show`
 
 # 9 – ARCHIVES (TAR FILES)
 
@@ -414,25 +449,55 @@ Linux chmod example
 
 # 10 – INSTALLING PACKAGES
 
+_Ubuntu uses APT. The `apt` command is the recommended front end; `apt-get`/`apt-cache` still work in scripts._
+
+### Refresh the package index.
+
+`sudo apt update`
+
 ### Search for a package by keyword.
 
-`yum search keyword`
+`apt search keyword`
 
 ### Install package.
 
-`yum install package`
+`sudo apt install -y package`
 
 ### Display description and summary information about package.
 
-`yum info package`
+`apt show package`
 
-### Install package from local file named package.rpm
+### Install package from a local .deb file
 
-`rpm -i package.rpm`
+`sudo apt install ./package.deb`
 
-### Remove/uninstall package.
+### Remove/uninstall package (keep configuration files).
 
-`yum remove package`
+`sudo apt remove package`
+
+### Remove package and its configuration files.
+
+`sudo apt purge package`
+
+### Remove packages that are no longer required.
+
+`sudo apt autoremove`
+
+### Upgrade all installed packages.
+
+`sudo apt upgrade`
+
+### List installed packages.
+
+`apt list --installed`
+
+### Find which package owns a file.
+
+`dpkg -S /usr/bin/ssh`
+
+### Install a snap package.
+
+`sudo snap install package`
 
 ### Install software from source code.
 
